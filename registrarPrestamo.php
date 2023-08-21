@@ -36,7 +36,7 @@
         </div>
 
         <div class="header">
-            <form action="funcionregistrar.php" method="POST">
+            <form action="funcionPrestamo.php" method="POST">
 
                 <div class="mb-3">
                     <label for="1nombre" class="form-label">Cliente</label>

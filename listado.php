@@ -129,10 +129,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                             echo "<td>" . $row['segundoapellido'] . "</td>";
                             echo "<td>" . $row['telefono'] . "</td>";
                             echo "<td>" . $row['correo'] . "</td>";
-                            echo "<td>" . $row['lugar'] . "</td>";
-                            echo "<td>" . $row['fecha_ida'] . "</td>";
-                            echo "<td>" . $row['fecha_regreso'] . "</td>";
-                            echo "<td>" . $row['motivo'] . "</td>";
+                            echo "<td>" . $row[''] . "</td>";
                             ?>
                             <td>
                                 <a href="delete.php?id=<?php echo $row['id']; ?>&primernombre=<?php echo urlencode($row['primernombre']);
