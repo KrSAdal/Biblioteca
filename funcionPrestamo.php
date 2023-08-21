@@ -29,7 +29,7 @@ if (!$conn) {
     VALUES('$fk_cliente', '$nombre1', '$nombre2', '$apellido1', '$apellido2', '$telefono', '$correo', '$libroPrestado', '$fechPrestamo', '$fechDevolucion')";
     
     if (mysqli_query($conn, $sql)) {
-       
+       include_once('create.php');
         header("Location: historial.php");
         exit();
     } else {
