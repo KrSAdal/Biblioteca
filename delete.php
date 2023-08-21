@@ -3,14 +3,14 @@
 $server = "localhost";
 $user = "root";
 $pass = "";
-$db = "agencia_viajes";
+$db = "biblioteca";
 $conn = mysqli_connect($server, $user, $pass, $db);
 if(!$conn){
     die("La conexión fallo: " . mysqli_connect_error());
 }else{
     include_once('delete.php');
     $id = $_GET['id'];
-    $sql = "DELETE FROM viajero WHERE id = ". $id ."";
+    $sql = "DELETE FROM cliente WHERE id = ". $id ."";
     
     if(mysqli_query($conn, $sql)){
         header("Location: listado.php");

@@ -26,9 +26,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         style="width: 100px;" alt=":(">
                 </div>
                 <ul>
-                    <li><a href="index.php"><label for="inicio">Inicio</label></a></li>
-                    <li><a href="registrarViajero.php"><label for="inicio">Registrar Viajeros</label></a></li>
-                    <li><a href="#"><label for="inicio">Visualizar Informe de Viajes</label></a></li>
+                    <li><a href="#"><label for="inicio">Inicio</label></a></li>
+                    <li><a href="registrarCliente.php"><label for="inicio">Registrar Clientes</label></a></li>
+                    <li><a href="registrarLibro.php"><label for="inicio">Registrar Libros</label></a></li>
+                    <li><a href="registrarPrestamo.php"><label for="inicio">Registrar Préstamos</label></a></li>
+                    <li><a href="listado.php"><label for="inicio">Historial de Préstamo</label></a></li>
                     <li><a href="cerrar.php"><label for="inicio">Cerrar Sesión</label></a></li>
                 </ul>
             </div>
@@ -39,24 +41,24 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         <thead>
                             <tr class="filters">
                                 <th>
-                                    Viajero
-                                    <select name="buscarViajero" class="form-control mt-2"
+                                    Libro
+                                    <select name="buscarLibro" class="form-control mt-2"
                                         style="border: #bababa 1px solid; color:#000000;">
                                         <option value="Todos">Todos</option>
                                         <?php
                                         $server = "localhost";
                                         $user = "root";
                                         $pass = "";
-                                        $db = "agencia_viajes";
+                                        $db = "biblioteca";
                                         $conn = mysqli_connect($server, $user, $pass, $db);
 
                                         if ($conn) {
-                                            $sql = "SELECT DISTINCT primernombre FROM viajero";
+                                            $sql = "SELECT DISTINCT titulo FROM libro";
                                             $resultado = mysqli_query($conn, $sql);
 
                                             while ($row = $resultado->fetch_assoc()) {
-                                                $nombreViajero = $row['primernombre'];
-                                                echo "<option value='$nombreViajero'>$nombreViajero</option>";
+                                                $nombreViajero = $row['titulo'];
+                                                echo "<option value='$tituloLibro'>$tituloLibro</option>";
                                             }
                                             mysqli_close($conn);
                                         }
@@ -71,11 +73,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                 </div>
 
                 <?php
-                if (isset($_POST["buscarViajero"])) {
-                    if ($_POST["buscarViajero"] == 'Todos') {
+                if (isset($_POST["buscarLibro"])) {
+                    if ($_POST["buscarLibro"] == 'Todos') {
                         $filtro = '';
                     } else {
-                        $filtro = "WHERE primernombre = '" . $_POST["buscarViajero"] . "'";
+                        $filtro = "WHERE titulo = '" . $_POST["buscarLibro"] . "'";
                     }
                 } else {
                     $filtro = '';
@@ -96,10 +98,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         <th scope="col">Segundo Apellido</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo Electrónico</th>
-                        <th scope="col">Lugar a Visitar</th>
-                        <th scope="col">Fecha Ida</th>
-                        <th scope="col">Fecha Regreso</th>
-                        <th scope="col">Mótivo</th>
+                        <th scope="col">Libro Prestado</th>
+                        <th scope="col">Fecha Préstamo</th>
+                        <th scope="col">Fecha Devolución</th>
+                        <th scope="col">Usuario a Cargo</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Acción</th>
                     </tr>
                 </thead>
@@ -108,7 +111,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                 $server = "localhost";
                 $user = "root";
                 $pass = "";
-                $db = "agencia_viajes";
+                $db = "biblioteca";
                 $conn = mysqli_connect($server, $user, $pass, $db);
 
                 if (!$conn) {
@@ -132,18 +135,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                             echo "<td>" . $row['motivo'] . "</td>";
                             ?>
                             <td>
-                                <a
-                                    href="delete.php?id=<?php echo $row['id']; ?>&primernombre=<?php echo urlencode($row['primernombre']);
-                                    ?>&segundonombre=<?php echo urlencode($row['segundonombre']);
-                                    ?>&primerapellido=<?php echo urlencode($row['primerapellido']);
-                                    ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']);
-                                    ?>&telefono=<?php echo urlencode($row['telefono']);
-                                    ?>&correo=<?php echo urlencode($row['correo']);
-                                    ?>&lugar=<?php echo urlencode($row['lugar']);
-                                    ?>&fecha_ida=<?php echo urlencode($row['fecha_ida']);
-                                    ?>&fecha_regreso=<?php echo urlencode($row['fecha_regreso']);
-                                    ?>&motivo=<?php echo urlencode($row['motivo']);
-                                    ?>">
+                                <a href="delete.php?id=<?php echo $row['id']; ?>&primernombre=<?php echo urlencode($row['primernombre']);
+                                   ?>&segundonombre=<?php echo urlencode($row['segundonombre']);
+                                   ?>&primerapellido=<?php echo urlencode($row['primerapellido']);
+                                   ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']);
+                                   ?>&telefono=<?php echo urlencode($row['telefono']);
+                                   ?>&correo=<?php echo urlencode($row['correo']);
+                                   ?>&lugar=<?php echo urlencode($row['lugar']);
+                                   ?>&fecha_ida=<?php echo urlencode($row['fecha_ida']);
+                                   ?>&fecha_regreso=<?php echo urlencode($row['fecha_regreso']);
+                                   ?>&motivo=<?php echo urlencode($row['motivo']);
+                                   ?>">
                                     <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
                             </td>
                             <?php
@@ -161,6 +163,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
     <?php
 } else {
     header('location: index.php');
-} 
+}
 
 ?>

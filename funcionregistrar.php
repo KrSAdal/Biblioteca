@@ -8,7 +8,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['usuario'])) {
 $server = "localhost";
 $user = "root";
 $pass = "";
-$db = "agencia_viajes";
+$db = "biblioteca";
 $conn = mysqli_connect($server, $user, $pass, $db);
 
 if (!$conn) {
@@ -20,12 +20,8 @@ if (!$conn) {
     $apellido2 = $_POST['2apellido'];
     $telefono = $_POST['telefono'];
     $correo = $_POST['correo'];
-    $lugar = $_POST['lugar'];
-    $ida = $_POST['ida'];
-    $vuelta = $_POST['vuelta'];
-    $motivo = $_POST['motivo'];
 
-    $sql = "INSERT INTO viajero(primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo, lugar, fecha_ida, fecha_regreso, motivo) VALUES('$nombre1', '$nombre2', '$apellido1', '$apellido2', '$telefono', '$correo', '$lugar', '$ida', '$vuelta', '$motivo')";
+    $sql = "INSERT INTO cliente(primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo) VALUES('$nombre1', '$nombre2', '$apellido1', '$apellido2', '$telefono', '$correo')";
     
     if (mysqli_query($conn, $sql)) {
         include_once('create.php');

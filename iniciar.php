@@ -19,7 +19,7 @@
             header("location: login.php?error=La contraseña es requerida");
             exit();
         }else{
-            $sql = "SELECT * FROM administracion WHERE usuario = '$Usuario'";
+            $sql = "SELECT * FROM usuario WHERE usuario = '$Usuario'";
             $query = mysqli_query($conexion, $sql);
             
             if($query->num_rows==1){
