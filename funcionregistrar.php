@@ -24,7 +24,7 @@ if (!$conn) {
     $sql = "INSERT INTO cliente(primernombre, segundonombre, primerapellido, segundoapellido, telefono, correo) VALUES('$nombre1', '$nombre2', '$apellido1', '$apellido2', '$telefono', '$correo')";
     
     if (mysqli_query($conn, $sql)) {
-        include_once('create.php');
+
         header("Location: listado.php");
         exit();
     } else {

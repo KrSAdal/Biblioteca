@@ -28,8 +28,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                     <li><a href="#"><label for="inicio">Inicio</label></a></li>
                     <li><a href="registrarCliente.php"><label for="inicio">Registrar Clientes</label></a></li>
                     <li><a href="registrarLibro.php"><label for="inicio">Registrar Libros</label></a></li>
-                    <li><a href="registrarPrestamo.php"><label for="inicio">Registrar Préstamos</label></a></li>
-                    <li><a href="historial.php"><label for="inicio">Historial de Préstamo</label></a></li>
+                    <li><a href="listado.php"><label for="inicio">Listado de Usuarios</label></a></li>
+                    <li><a href="historial.php"><label for="inicio">Historial de Prestamos</label></a></li>
                     <li><a href="cerrar.php"><label for="inicio">Cerrar Sesión</label></a></li>
                 </ul>
             </div>

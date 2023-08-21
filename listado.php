@@ -26,11 +26,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         style="width: 100px;" alt=":(">
                 </div>
                 <ul>
-                    <li><a href="#"><label for="inicio">Inicio</label></a></li>
+                    <li><a href="index.php"><label for="inicio">Inicio</label></a></li>
                     <li><a href="registrarCliente.php"><label for="inicio">Registrar Clientes</label></a></li>
                     <li><a href="registrarLibro.php"><label for="inicio">Registrar Libros</label></a></li>
-                    <li><a href="registrarPrestamo.php"><label for="inicio">Registrar Préstamos</label></a></li>
                     <li><a href="listado.php"><label for="inicio">Listado de Usuarios</label></a></li>
+                    <li><a href="historial.php"><label for="inicio">Historial de Prestamos</label></a></li>
                     <li><a href="cerrar.php"><label for="inicio">Cerrar Sesión</label></a></li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         <th scope="col">Segundo Apellido</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo Electrónico</th>
-                        <th scope="col">Acción</th>
+                        <th scope="col">Prestamo</th>
                     </tr>
                 </thead>
                 <?php
@@ -71,11 +71,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                             echo "<td>" . $row['segundoapellido'] . "</td>";
                             echo "<td>" . $row['telefono'] . "</td>";
                             echo "<td>" . $row['correo'] . "</td>";
-                            echo "<td>" . $row['accion'] . "</td>";
                             ?>
-                            <td><a
-                                    href="prestamo.php?id=<?php echo $row['id']; ?>&primernombre=<?php echo urlencode($row['primernombre']); ?>&segundonombre=<?php echo urlencode($row['segundonombre']); ?>&tercernombre=<?php echo urlencode($row['tercernombre']); ?>&primerapellido=<?php echo urlencode($row['primerapellido']); ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']); ?>&telefono=<?php echo urlencode($row['telefono']); ?>&telefonopadres=<?php echo urlencode($row['telefonopadres']); ?>&jornada=<?php echo urlencode($row['jornada']); ?>&grado=<?php echo urlencode($row['grado']); ?>&carrera=<?php echo urlencode($row['carrera']); ?>"><button
-                                        type="button" class="btn btn-warning"><i class="bi bi-pencil"></button></i></button></a>
+                            <td><a href="registrarPrestamo.php?id=<?php echo $row['id'];
+                            ?>&primernombre=<?php echo urlencode($row['primernombre']);
+                            ?>&segundonombre=<?php echo urlencode($row['segundonombre']);
+                            ?>&primerapellido=<?php echo urlencode($row['primerapellido']);
+                            ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']);
+                            ?>&telefono=<?php echo urlencode($row['telefono']);
+                            ?>&correo=<?php echo urlencode($row['correo']);
+                            ?>"><button type="button" class="btn btn-warning"><i class="bi bi-arrow-up"></button></i></button></a>
                             </td>
                             <?php
                             echo "</tr>";
