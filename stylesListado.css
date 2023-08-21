@@ -1,0 +1,57 @@
+.yup{
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    float: left;
+    background-color: rgb(137, 237, 253);
+}
+
+.principal {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    float: left;
+    background-color: rgb(137, 237, 253);
+}
+
+.barralateral{
+    height: 100%;
+    width: 24%;
+    float: left;
+    margin-left: 6px;
+    border: 7px solid rgb(135, 248, 234);
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    overflow: auto;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.barraoculta{
+    float: right;
+    margin: 12px;
+    color: white;
+    opacity: .7;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.barralateral ul li {
+    list-style: none;
+    padding: 12px 10px;
+}
+
+.barralateral ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-family: sans-serif;
+    opacity: 1;
+}
+
+.barralateral ul li:hover {
+    background: #bbbaba;
+    cursor: pointer;
+}
+

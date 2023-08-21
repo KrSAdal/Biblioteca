@@ -1,0 +1,29 @@
+.yup {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    float: left;
+    background-color: rgb(137, 237, 253);
+  
+  }
+  .header {
+    height: auto;
+    width: 40%;
+    padding: 5px;
+    border-radius: 10px 5px;
+    margin: 0 auto;
+    float: flex;
+    border: 5px solid white;
+    background-color: rgb(135, 248, 234);
+    
+  }
+  
+  
+  .principal {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    float: left;
+    background-color: rgb(137, 237, 253);
+  }
+  
