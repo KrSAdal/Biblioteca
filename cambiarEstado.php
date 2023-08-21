@@ -22,7 +22,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                 echo "Error: " . mysqli_error($conn);
             }
         } else {
-            // Si el estado no es 'Pendiente', redirecciona de vuelta al historial sin hacer cambios
+           
             header("Location: historial.php");
             exit();
         }

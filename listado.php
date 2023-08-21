@@ -80,6 +80,15 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                             ?>&telefono=<?php echo urlencode($row['telefono']);
                             ?>&correo=<?php echo urlencode($row['correo']);
                             ?>"><button type="button" class="btn btn-warning"><i class="bi bi-arrow-up"></button></i></button></a>
+
+                            <a href="editCliente.php?id=<?php echo $row['id'];
+                            ?>&primernombre=<?php echo urlencode($row['primernombre']);
+                            ?>&segundonombre=<?php echo urlencode($row['segundonombre']);
+                            ?>&primerapellido=<?php echo urlencode($row['primerapellido']);
+                            ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']);
+                            ?>&telefono=<?php echo urlencode($row['telefono']);
+                            ?>&correo=<?php echo urlencode($row['correo']);
+                            ?>"><button type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></button></i></button></a>
                             </td>
                             <?php
                             echo "</tr>";

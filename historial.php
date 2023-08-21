@@ -77,13 +77,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                             echo "<td>" . $row['fecha_devolucion'] . "</td>";
                             echo "<td>" . $row['estado'] . "</td>";
                            
-                            // Verificar si el estado es 'Devuelto'
+                            
                             if ($row['estado'] == 'Devuelto') {
-                                echo '<td></td>'; // No mostrar botón si el estado es 'Devuelto'
+                                echo '<td></td>'; 
                             } else {
                                 echo '<td><a href="cambiarEstado.php?id=' . $row['id'] . '&estado=' . urlencode($row['estado']) . '"><button type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button></a></td>';
                             }
-
+                            
                             echo "</tr>";
                         }
                     }
