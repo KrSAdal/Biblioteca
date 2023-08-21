@@ -14,16 +14,17 @@ $conn = mysqli_connect($server, $user, $pass, $db);
 if (!$conn) {
     die("La conexion fallo: " . mysqli_connect_error());
 } else {
-    $cliente = $_POST['cliente'];
-    $libroPrestado = $_POST['libroPrestado'];
-    $fechPrestamo = $_POST['fechPrestamo'];
-    $fechDevolucion = $_POST['fechDevolucion'];
+    $libroNombre = $_POST['libroNombre'];
+    $libroAutor = $_POST['libroAutor'];
+    $libroLanzamiento = $_POST['libroLanzamiento'];
+    $libroPaginas = $_POST['libroPaginas'];
+    $libroEditorial = $_POST['libroEditorial'];
 
-    $sql = "INSERT INTO prestamo(cliente, libroPrestado, fechPrestamo, fechDevolucion) VALUES('$cliente', '$libroPrestado', '$fechPrestamo', '$fechDevolucion')";
+    $sql = "INSERT INTO libro(titulo, autor, lanzamiento, numeroPaginas, editorial) VALUES('$libroNombre', '$libroAutor', '$libroLanzamiento', '$libroPaginas', '$libroEditorial')";
     
     if (mysqli_query($conn, $sql)) {
        
-        header("Location: historial.php");
+        header("Location: listado.php");
         exit();
     } else {
         echo "Error: " . mysqli_error($conn);

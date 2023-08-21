@@ -30,63 +30,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                     <li><a href="registrarCliente.php"><label for="inicio">Registrar Clientes</label></a></li>
                     <li><a href="registrarLibro.php"><label for="inicio">Registrar Libros</label></a></li>
                     <li><a href="registrarPrestamo.php"><label for="inicio">Registrar Préstamos</label></a></li>
-                    <li><a href="listado.php"><label for="inicio">Historial de Préstamo</label></a></li>
+                    <li><a href="listado.php"><label for="inicio">Listado de Usuarios</label></a></li>
                     <li><a href="cerrar.php"><label for="inicio">Cerrar Sesión</label></a></li>
                 </ul>
             </div>
-
-            <form id="form2" name="form2" method="POST" action="listado.php">
-                <div class="col-12 row">
-                    <table class="table">
-                        <thead>
-                            <tr class="filters">
-                                <th>
-                                    Libro
-                                    <select name="buscarLibro" class="form-control mt-2"
-                                        style="border: #bababa 1px solid; color:#000000;">
-                                        <option value="Todos">Todos</option>
-                                        <?php
-                                        $server = "localhost";
-                                        $user = "root";
-                                        $pass = "";
-                                        $db = "biblioteca";
-                                        $conn = mysqli_connect($server, $user, $pass, $db);
-
-                                        if ($conn) {
-                                            $sql = "SELECT DISTINCT titulo FROM libro";
-                                            $resultado = mysqli_query($conn, $sql);
-
-                                            while ($row = $resultado->fetch_assoc()) {
-                                                $nombreViajero = $row['titulo'];
-                                                echo "<option value='$tituloLibro'>$tituloLibro</option>";
-                                            }
-                                            mysqli_close($conn);
-                                        }
-                                        ?>
-                                    </select>
-
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <input type="submit" class="btn btn-success" value="Ver">;
-                </div>
-
-                <?php
-                if (isset($_POST["buscarLibro"])) {
-                    if ($_POST["buscarLibro"] == 'Todos') {
-                        $filtro = '';
-                    } else {
-                        $filtro = "WHERE titulo = '" . $_POST["buscarLibro"] . "'";
-                    }
-                } else {
-                    $filtro = '';
-                }
-
-                ?>
-            </form>
-
-
 
             <table class="table table-sm table-striped table-bordered">
                 <thead>
@@ -98,11 +45,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         <th scope="col">Segundo Apellido</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo Electrónico</th>
-                        <th scope="col">Libro Prestado</th>
-                        <th scope="col">Fecha Préstamo</th>
-                        <th scope="col">Fecha Devolución</th>
-                        <th scope="col">Usuario a Cargo</th>
-                        <th scope="col">Estado</th>
                         <th scope="col">Acción</th>
                     </tr>
                 </thead>
@@ -117,7 +59,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                 if (!$conn) {
                     die("La conexion fallo: " . mysqli_connect_error());
                 } else {
-                    $sql2 = "SELECT * FROM viajero $filtro";
+                    $sql2 = "SELECT * FROM cliente ";
                     $resultado = mysqli_query($conn, $sql2);
                     if ($resultado) {
                         while ($row = $resultado->fetch_array()) {
@@ -129,21 +71,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                             echo "<td>" . $row['segundoapellido'] . "</td>";
                             echo "<td>" . $row['telefono'] . "</td>";
                             echo "<td>" . $row['correo'] . "</td>";
-                            echo "<td>" . $row[''] . "</td>";
+                            echo "<td>" . $row['accion'] . "</td>";
                             ?>
-                            <td>
-                                <a href="delete.php?id=<?php echo $row['id']; ?>&primernombre=<?php echo urlencode($row['primernombre']);
-                                   ?>&segundonombre=<?php echo urlencode($row['segundonombre']);
-                                   ?>&primerapellido=<?php echo urlencode($row['primerapellido']);
-                                   ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']);
-                                   ?>&telefono=<?php echo urlencode($row['telefono']);
-                                   ?>&correo=<?php echo urlencode($row['correo']);
-                                   ?>&lugar=<?php echo urlencode($row['lugar']);
-                                   ?>&fecha_ida=<?php echo urlencode($row['fecha_ida']);
-                                   ?>&fecha_regreso=<?php echo urlencode($row['fecha_regreso']);
-                                   ?>&motivo=<?php echo urlencode($row['motivo']);
-                                   ?>">
-                                    <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
+                            <td><a
+                                    href="prestamo.php?id=<?php echo $row['id']; ?>&primernombre=<?php echo urlencode($row['primernombre']); ?>&segundonombre=<?php echo urlencode($row['segundonombre']); ?>&tercernombre=<?php echo urlencode($row['tercernombre']); ?>&primerapellido=<?php echo urlencode($row['primerapellido']); ?>&segundoapellido=<?php echo urlencode($row['segundoapellido']); ?>&telefono=<?php echo urlencode($row['telefono']); ?>&telefonopadres=<?php echo urlencode($row['telefonopadres']); ?>&jornada=<?php echo urlencode($row['jornada']); ?>&grado=<?php echo urlencode($row['grado']); ?>&carrera=<?php echo urlencode($row['carrera']); ?>"><button
+                                        type="button" class="btn btn-warning"><i class="bi bi-pencil"></button></i></button></a>
                             </td>
                             <?php
                             echo "</tr>";
