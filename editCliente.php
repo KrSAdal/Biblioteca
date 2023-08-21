@@ -50,7 +50,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
             </div>
 
             <div class="header">
-                <form action="funcionPrestamo.php" method="POST">
+                <form action="editFuncion.php" method="POST">
                     <center>Cliente</center>
                     <div class="mb-3">
                         <label for="ID" class="form-label">ID</label>
