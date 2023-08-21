@@ -5,7 +5,6 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['usuario'])) {
     exit();
 }
 
-
 include_once('conexion.php');
 
 if (!$conn) {
@@ -15,7 +14,7 @@ if (!$conn) {
     $result = mysqli_query($conn, $sql2);
     $row = mysqli_fetch_assoc($result);
 
-    $fk_cliente = $_row['id'];
+    $fk_cliente = $row['id']; // Corrección aquí
     $nombre1 = $_POST['1nombre'];
     $telefono = $_POST['telefono'];
     $correo = $_POST['correo'];
@@ -29,7 +28,6 @@ if (!$conn) {
     VALUES('$fk_cliente', '$nombre1', '$telefono', '$correo', '$libroPrestado', '$fechPrestamo', '$fechDevolucion', '$usuario', '$estado')";
     
     if (mysqli_query($conn, $sql)) {
-
         header("Location: historial.php");
         exit();
     } else {

@@ -12,7 +12,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
         <title>Historial</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="stylesListado.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     </head>
 
@@ -41,11 +41,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         <th scope="col">Código de Cliente</th>
                         <th scope="col">Primer Nombre</th>
                         <th scope="col">Teléfono</th>
+                        <th scope="col">Correo</th>
                         <th scope="col">Libro</th>
                         <th scope="col">Fecha de Entrega</th>
                         <th scope="col">Fecha de Devolución</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Acción</th>
+                        <th scope="col">Cambiar Estado</th>
                     </tr>
                 </thead>
                 <?php
@@ -66,26 +67,23 @@ if (isset($_SESSION['id']) && isset($_SESSION['usuario'])) {
                         while ($row = $resultado->fetch_array()) {
                             echo "<tr>";
                             echo "<td>" . $row['id'] . "</td>";
+                            echo "<td>" . $row['usuario'] . "</td>";
+                            echo "<td>" . $row['fk_cliente'] . "</td>";
                             echo "<td>" . $row['primernombre'] . "</td>";
-                            echo "<td>" . $row['segundonombre'] . "</td>";
-                            echo "<td>" . $row['primerapellido'] . "</td>";
-                            echo "<td>" . $row['segundoapellido'] . "</td>";
                             echo "<td>" . $row['telefono'] . "</td>";
                             echo "<td>" . $row['correo'] . "</td>";
                             echo "<td>" . $row['libro'] . "</td>";
                             echo "<td>" . $row['fecha_prestamo'] . "</td>";
                             echo "<td>" . $row['fecha_devolucion'] . "</td>";
-                            echo "<td>" . $row['usuario'] . "</td>";
                             echo "<td>" . $row['estado'] . "</td>";
-                            ?>
-                            <td><a href="cambiarEstado.php?id=<?php echo $row['id'];
-                            ?>&estado=<?php echo urlencode($row['estado']);
-                            ?>"><button type="button" class="btn btn-warning"><i class="bi bi-arrow-up"></button></i></button></a>
-                            </td>
-                            <?php
-                            ?>
+                           
+                            // Verificar si el estado es 'Devuelto'
+                            if ($row['estado'] == 'Devuelto') {
+                                echo '<td></td>'; // No mostrar botón si el estado es 'Devuelto'
+                            } else {
+                                echo '<td><a href="cambiarEstado.php?id=' . $row['id'] . '&estado=' . urlencode($row['estado']) . '"><button type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button></a></td>';
+                            }
 
-                            <?php
                             echo "</tr>";
                         }
                     }
